@@ -147,7 +147,7 @@
                 <configuration>
                     <productVersion>${bamboo.version}</productVersion>
                     <!-- remove quick load in prod -->
-                    <enableQuickReload>true</enableQuickReload>
+                    <enableQuickReload>false</enableQuickReload>
                     <instructions>
                         <Spring-Context>*</Spring-Context>
                     </instructions>
