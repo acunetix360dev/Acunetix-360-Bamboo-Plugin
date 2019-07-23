@@ -1,17 +1,15 @@
-You have successfully created an Atlassian Plugin!
+Acunetix 360 Bamboo Plugin
+Acunetix 360 is a scalable multi-user online web application security scanning solution with built-in workflow tools. It has built-in enterprise workflow tools and is specifically designed to help enterprises scan and manage the security of 100s and 1000s of websites.
 
-Here are the SDK commands you'll use immediately:
+You can request demo at:
 
-* atlas-run   -- installs this plugin into the product and starts it on localhost
-* atlas-debug -- same as atlas-run, but allows a debugger to attach at port 5005
-* atlas-cli   -- after atlas-run or atlas-debug, opens a Maven command line window:
-                 - 'pi' reinstalls the plugin into the running product instance
-* atlas-help  -- prints description for all commands in the SDK
+https://www.acunetix.com/web-vulnerability-scanner/demo/
 
-*atlas-mvn package -- use it instead of mvn package
+User Guide
+Acunetix 360 Bamboo Plugin documentation is always available at:
 
-https://developer.atlassian.com/server/framework/atlassian-sdk/working-with-maven/
+https://www.acunetix.com/ (link will be updated)
 
-Full documentation is always available at:
+Acunetix 360 SDLC documentation is always available at:
 
-https://developer.atlassian.com/display/DOCS/Introduction+to+the+Atlassian+Plugin+SDK
+https://www.acunetix.com/ (link will be updated)
