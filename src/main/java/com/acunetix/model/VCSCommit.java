@@ -90,7 +90,7 @@ public class VCSCommit {
 
     public void addVcsCommitInfo(List<NameValuePair> params) {
         params.add(new BasicNameValuePair("VcsCommitInfoModel.CiBuildId", buildId));
-        params.add(new BasicNameValuePair("VcsCommitInfoModel.IntegrationSystem", "Jenkins"));
+        params.add(new BasicNameValuePair("VcsCommitInfoModel.IntegrationSystem", "Bamboo"));
         params.add(new BasicNameValuePair("VcsCommitInfoModel.CiBuildServerVersion", ciBuildServerVersion));
         params.add(new BasicNameValuePair("VcsCommitInfoModel.CiNcPluginVersion", ciNcPluginVersion));
         params.add(new BasicNameValuePair("VcsCommitInfoModel.CiBuildConfigurationName", buildConfigurationName));
