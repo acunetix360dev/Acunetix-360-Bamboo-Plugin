@@ -74,6 +74,7 @@ public class ScanRequestResult extends ScanRequestBase {
         setScanReportEndpoint();
 
     }
+
     private void setScanReportEndpoint() throws MalformedURLException {
 
         Map<String, String> queryparams = new HashMap<>();

@@ -12,12 +12,12 @@ public class VCSCommit {
     public static VCSCommit Empty() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
         String dateString = dateFormat.format(new Date());
-        return new VCSCommit("", "", "", "", false, "", "", "", dateString);
+        return new VCSCommit("", "", "", "", "", false, "", "", "", dateString);
     }
 
-    public VCSCommit(String bambooVersion, String buildId, String buildConfigurationName, String buildURL, boolean buildHasChange, String versionControlName, String Committer, String vcsVersion, String ciTimestamp) {
+    public VCSCommit(String bambooVersion, String pluginVersion, String buildId, String buildConfigurationName, String buildURL, boolean buildHasChange, String versionControlName, String Committer, String vcsVersion, String ciTimestamp) {
         this.ciBuildServerVersion = bambooVersion;
-        this.ciNcPluginVersion = "1.0.0";
+        this.ciNcPluginVersion = pluginVersion;
         this.buildId = buildId;
         this.buildConfigurationName = buildConfigurationName;
         this.buildURL = buildURL;

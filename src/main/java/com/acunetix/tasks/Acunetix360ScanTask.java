@@ -1,5 +1,6 @@
 package com.acunetix.tasks;
 
+import com.atlassian.bamboo.utils.SystemProperty;
 import com.acunetix.ConfigManager;
 import com.acunetix.model.ScanRequest;
 import com.acunetix.model.ScanRequestResult;
@@ -19,10 +20,7 @@ import org.apache.http.HttpResponse;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Acunetix360ScanTask implements TaskType {
     private BuildLogger buildLogger;
@@ -43,10 +41,8 @@ public class Acunetix360ScanTask implements TaskType {
         buildLogger = taskContext.getBuildLogger();
         final TaskResult taskResult = ScanRequestHandler(taskContext);
         buildLogger = null;
-
         return taskResult;
     }
-
 
     private TaskResult ScanRequestHandler(final TaskContext taskContext) throws TaskException {
         final TaskResultBuilder builder = TaskResultBuilder.newBuilder(taskContext).failed(); //Initially set to Failed.
@@ -121,9 +117,28 @@ public class Acunetix360ScanTask implements TaskType {
         String buildConfigurationName = buildContext.getPlanName();
         String buildURL = administrationConfiguration.getBaseUrl() + "/browse/" + buildContext.getPlanResultKey().toString();
         String bambooVersion = customVariables.get("version");
-        if (AppCommon.IsNullOrEmpty(bambooVersion)) {
+        String pluginVersion = "";
+
+        try {
+            final Properties properties = new Properties();
+            properties.load(this.getClass().getClassLoader().getResourceAsStream("ApplicationInfo.properties"));
+            pluginVersion = properties.getProperty("PluginVersion");
             bambooVersion = "Not found.";
+
+            String productVersion = System.getProperty("product.version");
+            if (productVersion != null) {
+                bambooVersion = productVersion;
+            }
+        } catch (Exception e) {
+            // pom props could not read, continue normal
+            if (AppCommon.IsNullOrEmpty(bambooVersion)) {
+                bambooVersion = "Not found.";
+            }
+            if (AppCommon.IsNullOrEmpty(pluginVersion)) {
+                pluginVersion = "Not found.";
+            }
         }
+
         //ISO 8601-compliant date and time format
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
         String dateString = dateFormat.format(new Date());
@@ -153,9 +168,9 @@ public class Acunetix360ScanTask implements TaskType {
                 userName = "Not Found.";
             }
 
-            vcsCommit = new VCSCommit(bambooVersion, buildId, buildConfigurationName, buildURL, buildHasChange, vcsName, userName, changeSetId, dateString);
+            vcsCommit = new VCSCommit(bambooVersion, pluginVersion, buildId, buildConfigurationName, buildURL, buildHasChange, vcsName, userName, changeSetId, dateString);
         } else {
-            vcsCommit = new VCSCommit(bambooVersion, buildId, buildConfigurationName, buildURL, buildHasChange, "", "", "", dateString);
+            vcsCommit = new VCSCommit(bambooVersion, pluginVersion, buildId, buildConfigurationName, buildURL, buildHasChange, "", "", "", dateString);
         }
 
         logBuildParams(vcsCommit);
