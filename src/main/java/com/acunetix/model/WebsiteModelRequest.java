@@ -26,7 +26,7 @@ public class WebsiteModelRequest extends ScanRequestBase {
 
     public WebsiteModelRequest(String apiURL, String apiToken) throws MalformedURLException, NullPointerException, URISyntaxException {
         super(apiURL, apiToken);
-        pluginWebSiteModelsUri = new URL(ApiURL, "api/v1/IntegrationsApi/PluginWebSiteModels").toURI();
+        pluginWebSiteModelsUri = new URL(ApiURL, "api/1.0/scans/PluginWebSiteModels").toURI();
     }
 
     private final URI pluginWebSiteModelsUri;

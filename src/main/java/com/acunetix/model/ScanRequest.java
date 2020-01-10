@@ -55,12 +55,12 @@ public class ScanRequest extends ScanRequestBase {
     }
 
     private URI getRequestEndpoint() throws MalformedURLException, URISyntaxException {
-        String relativePath = "api/v1/integrationsApi/CreateFromPluginScanRequest";
+        String relativePath = "api/1.0/scans/CreateFromPluginScanRequest";
         return new URL(ApiURL, relativePath).toURI();
     }
 
     private URI getTestEndpoint() throws MalformedURLException, URISyntaxException {
-        String relativePath = "api/v1/integrationsApi/VerifyPluginScanRequest";
+        String relativePath = "api/1.0/scans/VerifyPluginScanRequest";
         return new URL(ApiURL, relativePath).toURI();
     }
 

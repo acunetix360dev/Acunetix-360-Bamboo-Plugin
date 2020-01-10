@@ -29,7 +29,7 @@ public class ScanRequestResult extends ScanRequestBase {
 
     private ScanReport report = null;
     private Date previousRequestTime;
-    private final String scanReportRelativeUrl = "api/v1/IntegrationsApi/report/";
+    private final String scanReportRelativeUrl = "api/1.0/scans/report/";
 
     private ScanRequestResult(String errorMessage) {
         super();

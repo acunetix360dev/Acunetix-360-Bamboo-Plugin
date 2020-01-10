@@ -11,12 +11,17 @@
     <input type="hidden" id="acunetix360ScanType_Dummy" value="${acunetix360ScanType!""}">
     <select id="acunetix360ScanType" name="acunetix360ScanType">
         <option value="">-- Please select a scan type --</option>
+        <option value="Incremental">Incremental</option>
         <option value="FullWithPrimaryProfile">Full (With primary profile)</option>
         <option value="FullWithSelectedProfile">Full (With selected profile)</option>
     </select>
     <span class="aui-icon icon-inline-help"><span>Help</span></span>
     <div class="error">${acunetix360ScanTypeError!""}</div>
     <div class="field-help description hidden">
+        <b>Incremental</b>
+        <hr>
+        The website's profile is used for retrieving the scan settings.<br>
+        The last scan with the same scan setting will be used as a base for the incremental scan.<br><br>
         <b>Full (With primary profile)</b>
         <hr>
         Performs full scan with primary profile.<br>

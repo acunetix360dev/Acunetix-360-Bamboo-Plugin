@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.acunetix</groupId>
     <artifactId>acunetix360-bamboo-plugin</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
 
     <organization>
         <name>Acunetix</name>
