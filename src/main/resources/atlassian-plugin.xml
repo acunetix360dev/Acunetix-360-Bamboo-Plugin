@@ -1,94 +1,85 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
-    <plugin-info>
-        <description>${project.description}</description>
-        <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
-        <param name="plugin-icon">images/plugin-logo.png</param>
-        <param name="plugin-logo">images/plugin-logo.png</param>
-        <param name="vendor-icon">images/plugin-logo.png</param>
-        <param name="vendor-logo">images/plugin-logo.png</param>
-        <param name="configure.url">/admin/acunetix360/Acunetix360EditConfiguration.action</param>
-    </plugin-info>
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}" />
+    <param name="plugin-icon">images/plugin-logo.png</param>
+    <param name="plugin-logo">images/plugin-logo.png</param>
+    <param name="vendor-icon">images/plugin-logo.png</param>
+    <param name="vendor-logo">images/plugin-logo.png</param>
+    <param name="configure.url">/admin/acunetix360/Acunetix360EditConfiguration.action</param>
+  </plugin-info>
+  <!-- add our web resources -->
+  <web-resource key="acunetix-360-web-resources" name="Acunetix 360 Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <dependency>com.atlassian.auiplugin:aui-spinner</dependency>
+    <context>atl.general</context>
+    <resource type="download" name="acunetix360-bamboo-plugin.css" location="/css/acunetix360-bamboo-plugin.css" />
+    <resource type="download" name="acunetix360-bamboo-plugin.js" location="/js/acunetix360-bamboo-plugin.js" />
+    <resource type="download" name="images/" location="/images" />
+  </web-resource>
+  <web-resource key="acunetix-360-assets" name="Acunetix 360 Assets">
+    <resource type="download" name="acunetix-360-logo.svg" location="images/acunetix-360-logo.svg" />
+  </web-resource>
 
-    <!-- add our web resources -->
-    <web-resource key="acunetix-360-web-resources" name="Acunetix 360 Web Resources">
-        <dependency>com.atlassian.auiplugin:ajs</dependency>
-        <dependency>com.atlassian.auiplugin:aui-spinner</dependency>
-        <context>atl.general</context>
-        <resource type="download" name="acunetix360-bamboo-plugin.css"
-                  location="/css/acunetix360-bamboo-plugin.css"/>
-        <resource type="download" name="acunetix360-bamboo-plugin.js"
-                  location="/js/acunetix360-bamboo-plugin.js"/>
-        <resource type="download" name="images/" location="/images"/>
-    </web-resource>
+  <!-- add our task types  -->
+  <taskType key="acunetix-360-scan-task" name="Acunetix 360 Scan Task" class="com.acunetix.tasks.Acunetix360ScanTask">
+    <description>Initiates Acunetix 360 scan.</description>
+    <configuration class="com.acunetix.tasks.Acunetix360ScanTaskConfigurator" />
+    <category name="test" />
+    <resource type="download" name="icon" location="images/plugin-scan-task-logo.png" />
+    <resource type="freemarker" name="edit" location="templates/task/Acunetix360ScanTaskEdit.ftl" />
+    <resource type="freemarker" name="view" location="templates/task/Acunetix360ScanTaskView.ftl" />
+  </taskType>
 
-    <web-resource key="acunetix-360-assets" name="Acunetix 360 Assets">
-        <resource type="download" name="acunetix-360-logo.svg" location="images/acunetix-360-logo.svg"/>
-    </web-resource>
+  <!-- add custom pages such as admin & report  -->
+  <web-item key="acunetix-360-global-config" name="Acunetix 360 Global Config" section="system.admin/plugins" weight="130">
+    <label key="Acunetix 360" />
+    <link linkId="acunetix360Config">/admin/acunetix360/Acunetix360EditConfiguration.action</link>
+  </web-item>
 
-    <!-- add our task types  -->
-    <taskType key="acunetix-360-scan-task" name="Acunetix 360 Scan Task" class="com.acunetix.tasks.Acunetix360ScanTask">
-        <description>Initiates Acunetix 360 scan.</description>
-        <configuration class="com.acunetix.tasks.Acunetix360ScanTaskConfigurator"/>
-        <category name="test"/>
-        <resource type="download" name="icon" location="images/plugin-scan-task-logo.png"/>
-        <resource type="freemarker" name="edit" location="templates/task/Acunetix360ScanTaskEdit.ftl"/>
-        <resource type="freemarker" name="view" location="templates/task/Acunetix360ScanTaskView.ftl"/>
-    </taskType>
+  <web-item key="acunetix-360-plan-report" name="Acunetix 360 Plan Report" section="chainResults.subMenu/chainResults" weight="50">
+    <description key="Acunetix360Report.desc">Provides Acunetix 360 scan report.</description>
+    <label key="Acunetix 360 Report" />
+    <link linkId="Acunetix360PlanDetails">/build/result/viewAcunetix360Report.action?planKey=${buildKey}&amp;buildNumber=${buildNumber}</link>
+  </web-item>
 
-    <!-- add rest resources  -->
-    <!-- http://bambooserver/rest/plugin/acunetix360/api -->
-    <rest name="Acunetix 360 Bamboo Rest Api" key="acunetix-360-rest-api" path="/plugin/acunetix360/api" version="1.0">
-        <description>Bamboo Rest API for Acunetix 360 Plugin</description>
-    </rest>
+  <web-item key="acunetix-360-job-report" name="Acunetix 360 Job Report" section="results.subMenu/results" weight="50">
+    <description key="Acunetix360Report.desc">Provides Acunetix 360 scan report.</description>
+    <label key="Acunetix 360 Report" />
+    <link linkId="Acunetix360PlanDetails">/build/result/viewAcunetix360Report.action?planKey=${buildKey}&amp;buildNumber=${buildNumber}</link>
+  </web-item>
 
-    <!-- add custom pages such as admin & report  -->
-    <web-item key="acunetix-360-global-config" name="Acunetix 360 Global Config" section="system.admin/plugins"
-              weight="130">
-        <label key="Acunetix 360"/>
-        <link linkId="acunetix360Config">/admin/acunetix360/Acunetix360EditConfiguration.action</link>
-    </web-item>
+  <xwork key="acunetix-360-actions" name="Acunetix 360 Actions">
+    <package name="Acunetix360Admin" extends="admin">
+      <action name="Acunetix360EditConfiguration" class="com.acunetix.PluginSettings" method="edit">
+        <result name="input" type="freemarker">/templates/PluginSettings.ftl</result>
+        <result name="success" type="freemarker">/templates/PluginSettings.ftl</result>
+        <result name="error" type="freemarker">/templates/PluginSettings.ftl</result>
+        <param name="mode">edit</param>
+      </action>
 
-    <web-item key="acunetix-360-plan-report" name="Acunetix 360 Plan Report" section="chainResults.subMenu/chainResults"
-              weight="50">
-        <description key="Acunetix360Report.desc">Provides Acunetix 360 scan report.</description>
-        <label key="Acunetix 360 Report"/>
-        <link linkId="Acunetix360PlanDetails">/build/result/viewAcunetix360Report.action?planKey=${buildKey}&amp;buildNumber=${buildNumber}</link>
-    </web-item>
+      <action name="Acunetix360SaveConfiguration" class="com.acunetix.PluginSettings" method="save">
+        <result name="input" type="freemarker">/templates/PluginSettings.ftl</result>
+        <result name="success" type="freemarker">/templates/PluginSettings.ftl</result>
+        <result name="error" type="freemarker">/templates/PluginSettings.ftl</result>
+      </action>
+    </package>
+    <package name="Acunetix360ScanResult" extends="buildView">
+      <action name="viewAcunetix360Report" class="com.acunetix.tasks.Acunetix360Report">
+        <result name="input" type="freemarker">/templates/task/Acunetix360Report.ftl</result>
+        <result name="success" type="freemarker">/templates/task/Acunetix360Report.ftl</result>
+        <result name="error" type="freemarker">/templates/task/Acunetix360Report.ftl</result>
+      </action>
+    </package>
+  </xwork>
+  <component-import name="Storage Location Service" key="storage-location-service" interface="com.atlassian.bamboo.storage.StorageLocationService" />
 
-    <web-item key="acunetix-360-job-report" name="Acunetix 360 Job Report" section="results.subMenu/results"
-              weight="50">
-        <description key="Acunetix360Report.desc">Provides Acunetix 360 scan report.</description>
-        <label key="Acunetix 360 Report"/>
-        <link linkId="Acunetix360PlanDetails">/build/result/viewAcunetix360Report.action?planKey=${buildKey}&amp;buildNumber=${buildNumber}</link>
-    </web-item>
-
-    <xwork key="acunetix-360-actions" name="Acunetix 360 Actions">
-        <package name="Acunetix360Admin" extends="admin">
-            <action name="Acunetix360EditConfiguration" class="com.acunetix.PluginSettings" method="edit">
-                <result name="input" type="freemarker">/templates/PluginSettings.ftl</result>
-                <result name="success" type="freemarker">/templates/PluginSettings.ftl</result>
-                <result name="error" type="freemarker">/templates/PluginSettings.ftl</result>
-                <param name="mode">edit</param>
-            </action>
-
-            <action name="Acunetix360SaveConfiguration" class="com.acunetix.PluginSettings" method="save">
-                <result name="input" type="freemarker">/templates/PluginSettings.ftl</result>
-                <result name="success" type="freemarker">/templates/PluginSettings.ftl</result>
-                <result name="error" type="freemarker">/templates/PluginSettings.ftl</result>
-            </action>
-        </package>
-        <package name="Acunetix360ScanResult" extends="buildView">
-            <action name="viewAcunetix360Report" class="com.acunetix.tasks.Acunetix360Report">
-                <result name="input" type="freemarker">/templates/task/Acunetix360Report.ftl</result>
-                <result name="success" type="freemarker">/templates/task/Acunetix360Report.ftl</result>
-                <result name="error" type="freemarker">/templates/task/Acunetix360Report.ftl</result>
-            </action>
-        </package>
-    </xwork>
-
-    <component-import name="Storage Location Service" key="storage-location-service"
-                      interface="com.atlassian.bamboo.storage.StorageLocationService"/>
+  <!-- add rest resources  -->
+  <!-- http://bambooserver/rest/acunetixBambooApi/1.0 -->
+  <rest name="Acunetix 360 Bamboo Rest Api" key="acunetix-360-rest-api" path="/acunetixBambooApi" version="1.0">
+    <description>Acunetix 360 Plugin Bamboo Rest API</description>
+  </rest>
 </atlassian-plugin>

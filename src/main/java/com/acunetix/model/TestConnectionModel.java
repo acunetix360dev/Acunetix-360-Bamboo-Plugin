@@ -1,22 +1,26 @@
 package com.acunetix.model;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement
 public class TestConnectionModel {
-    private String apiURL;
-    private String apiToken;
 
-    public String getApiURL() {
-        return apiURL;
-    }
+	private String apiURL;
+	private String apiToken;
 
-    public void setApiURL(String apiURL) {
-        this.apiURL = apiURL;
-    }
+	public String getApiURL() {
+		return apiURL;
+	}
 
-    public String getApiToken() {
-        return apiToken;
-    }
+	public void setApiURL(String apiURL) {
+		this.apiURL = apiURL;
+	}
 
-    public void setApiToken(String apiToken) {
-        this.apiToken = apiToken;
-    }
+	public String getApiToken() {
+		return apiToken;
+	}
+
+	public void setApiToken(String apiToken) {
+		this.apiToken = apiToken;
+	}
 }

@@ -32,7 +32,7 @@ cancelUri='/admin/administer.action']
         <section class="aui-page-panel-content">
             <h2 style="margin-left: 55px;">API Settings</h2>
 
-            [@ww.textfield name="apiUrl" label='Server URL' description="Acunetix 360 URL, like 'https://www.acunetix360.com'"/]
+            [@ww.textfield name="apiUrl" label='Server URL' description="Acunetix 360 URL, like 'https://online.acunetix360.com'"/]
             [@ww.password name="apiToken" label='API Token' showPassword='false' description="It can be found at 'Your Account > API Settings' page in the Acunetix 360.<br/>
                          User must have 'Start Scans' permission for the target website."/]
             <br>
@@ -70,7 +70,7 @@ cancelUri='/admin/administer.action']
         ncTestConnectionButtonSpinner = AJS.$("#acunetix360TestConnectionButtonSpinner");
 
         ncTestConnectionButton.click(ncTestConnection);
-        ncServerURLInput.attr('placeholder', "URL like 'https://www.acunetix360.com'");
+        ncServerURLInput.attr('placeholder', "URL like 'https://online.acunetix360.com'");
 
         updateNcParams();
     }
@@ -87,7 +87,7 @@ cancelUri='/admin/administer.action']
 
         var request = AJS.$.ajax({
             type: "POST",
-            url: "${req.contextPath}/rest/plugin/acunetix360/api/1.0/testconnection",
+            url: "${req.contextPath}/rest/acunetixBambooApi/1.0/testconnection",
             data: JSON.stringify(TestConnectionModel),
             contentType: "application/json",
             dataType: "json"

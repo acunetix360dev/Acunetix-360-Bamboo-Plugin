@@ -20,15 +20,11 @@ public class Report {
         if (!isModelValid) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
-
         final Acunetix360ScanHelper acunetix360ScanHelper = new Acunetix360ScanHelper();
-
         try {
-
             final ScanReport scanReport = acunetix360ScanHelper.GetScanReport(scanTaskID);
 
             return Response.ok(scanReport.getContent()).build();
-
         } catch (Exception ex) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
