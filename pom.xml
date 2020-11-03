@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.acunetix</groupId>
     <artifactId>acunetix360-bamboo-plugin</artifactId>
-    <version>1.7.0</version>
+    <version>1.7.1</version>
     <organization>
         <name>Acunetix</name>
         <url>https://www.acunetix.com/</url>
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
