@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.acunetix</groupId>
     <artifactId>acunetix360-bamboo-plugin</artifactId>
-    <version>1.7.1</version>
+    <version>1.7.2</version>
     <organization>
         <name>Acunetix</name>
         <url>https://www.acunetix.com/</url>
@@ -75,7 +75,7 @@
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.9.2</version>
+            <version>1.9.4</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
